@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cyber Security Career Map — Tanglish Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700;800&display=swap');
+
+  :root{
+    --bg:#0a0e1a;
+    --panel:#0f1424;
+    --panel-2:#141a2e;
+    --red:#ef4444;
+    --red-dim:#7f1d1d;
+    --green:#16a34a;
+    --green-dim:#14532d;
+    --purple:#7c3aed;
+    --purple-dim:#4c1d95;
+    --blue:#2563eb;
+    --blue-dim:#1e3a8a;
+    --orange:#f59e0b;
+    --orange-dim:#78350f;
+    --text:#e8ebf5;
+    --text-dim:#8b93b0;
+    --line:#232a45;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    line-height:1.5;
+    background-image:
+      radial-gradient(circle at 10% 5%, rgba(37,99,235,0.08), transparent 40%),
+      radial-gradient(circle at 90% 15%, rgba(239,68,68,0.06), transparent 40%);
+  }
+
+  .scanline{
+    position:fixed; inset:0; pointer-events:none; z-index:100;
+    background:repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0px, rgba(255,255,255,0.012) 1px, transparent 1px, transparent 3px);
+  }
+
+  header{
+    padding:64px 24px 40px;
+    text-align:center;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:3px;
+    color:var(--green);
+    text-transform:uppercase;
+    margin-bottom:18px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+  .eyebrow::before{content:"●"; color:var(--green); animation:blink 1.6s infinite;}
+  @keyframes blink{0%,49%{opacity:1;} 50%,100%{opacity:0.15;}}
+
+  h1{
+    font-family:'JetBrains Mono', monospace;
+    font-weight:800;
+    font-size:clamp(28px, 5vw, 52px);
+    letter-spacing:-1px;
+    background:linear-gradient(90deg, #fff, #9fb3ff);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    margin-bottom:14px;
+  }
+
+  .sub{
+    font-size:16px;
+    color:var(--text-dim);
+    max-width:640px;
+    margin:0 auto;
+  }
+  .sub b{color:var(--text); font-weight:600;}
+
+  .legend{
+    display:flex; flex-wrap:wrap; justify-content:center; gap:12px;
+    margin-top:32px;
+  }
+  .legend span{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    padding:6px 12px;
+    border-radius:20px;
+    border:1px solid var(--line);
+    display:flex; align-items:center; gap:6px;
+    color:var(--text-dim);
+  }
+  .dot{width:8px; height:8px; border-radius:50%; display:inline-block;}
+
+  main{max-width:1100px; margin:0 auto; padding:48px 24px 100px;}
+
+  .track{margin-bottom:64px;}
+
+  .track-head{
+    display:flex; align-items:baseline; gap:14px; margin-bottom:6px;
+    padding-bottom:14px; border-bottom:1px solid var(--line);
+  }
+  .track-tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px; font-weight:700; letter-spacing:2px;
+    padding:4px 10px; border-radius:4px;
+    text-transform:uppercase;
+  }
+  .track-head h2{
+    font-size:22px; font-weight:800; letter-spacing:-0.3px;
+  }
+  .track-desc{
+    font-size:14px; color:var(--text-dim); margin-top:10px; margin-bottom:26px;
+    max-width:720px;
+  }
+  .track-desc b{color:var(--text);}
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
+    gap:16px;
+  }
+
+  .card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:20px;
+    position:relative;
+    transition:transform .15s ease, border-color .15s ease, background .15s ease;
+  }
+  .card:hover{
+    transform:translateY(-3px);
+    background:var(--panel-2);
+  }
+  .card::before{
+    content:"";
+    position:absolute; top:0; left:0; right:0; height:3px;
+    border-radius:10px 10px 0 0;
+  }
+
+  .card .role{
+    font-weight:700; font-size:16px; margin-bottom:10px;
+    padding-left:0;
+  }
+  .card .label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px; letter-spacing:1.5px; text-transform:uppercase;
+    color:var(--text-dim); margin-bottom:4px; display:block;
+  }
+  .card .what{font-size:13.5px; color:#c7cce0; margin-bottom:12px;}
+  .card .use{font-size:13px; color:var(--text-dim); border-top:1px dashed var(--line); padding-top:10px;}
+  .card .use b{color:var(--text);}
+
+  /* track color variants */
+  .t-red .track-tag{background:rgba(239,68,68,0.15); color:var(--red); border:1px solid rgba(239,68,68,0.3);}
+  .t-red .card::before{background:var(--red);}
+  .t-green .track-tag{background:rgba(22,163,74,0.15); color:var(--green); border:1px solid rgba(22,163,74,0.3);}
+  .t-green .card::before{background:var(--green);}
+  .t-purple .track-tag{background:rgba(124,58,237,0.15); color:#a78bfa; border:1px solid rgba(124,58,237,0.3);}
+  .t-purple .card::before{background:var(--purple);}
+  .t-blue .track-tag{background:rgba(37,99,235,0.15); color:#60a5fa; border:1px solid rgba(37,99,235,0.3);}
+  .t-blue .card::before{background:var(--blue);}
+  .t-orange .track-tag{background:rgba(245,158,11,0.15); color:var(--orange); border:1px solid rgba(245,158,11,0.3);}
+  .t-orange .card::before{background:var(--orange);}
+
+  footer{
+    text-align:center; padding:40px 24px 70px;
+    color:var(--text-dim); font-size:13px;
+    font-family:'JetBrains Mono', monospace;
+    border-top:1px solid var(--line);
+  }
+
+  /* INTRO SECTION */
+  .intro{
+    max-width:1100px; margin:0 auto; padding:56px 24px 8px;
+  }
+  .intro-box{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:32px;
+    margin-bottom:22px;
+  }
+  .intro-box h2{
+    font-family:'JetBrains Mono', monospace;
+    font-size:clamp(18px, 3vw, 24px);
+    margin-bottom:14px;
+    color:#fff;
+  }
+  .intro-box p{
+    font-size:14.5px;
+    color:#c7cce0;
+    margin-bottom:12px;
+  }
+  .intro-box p b{color:#fff;}
+
+  .task-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
+    gap:14px;
+    margin-top:18px;
+  }
+  .task-item{
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:16px;
+    font-size:13.5px;
+    color:var(--text-dim);
+  }
+  .task-item .num{
+    font-family:'JetBrains Mono', monospace;
+    color:var(--green);
+    font-size:12px;
+    font-weight:700;
+    display:block;
+    margin-bottom:6px;
+  }
+  .task-item b{color:var(--text);}
+
+  .legal-split{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    margin-top:18px;
+  }
+  .legal-card{
+    border-radius:12px;
+    padding:20px;
+    border:1px solid var(--line);
+  }
+  .legal-card.legal{
+    background:rgba(22,163,74,0.08);
+    border-color:rgba(22,163,74,0.35);
+  }
+  .legal-card.illegal{
+    background:rgba(239,68,68,0.08);
+    border-color:rgba(239,68,68,0.35);
+  }
+  .legal-card h3{
+    font-family:'JetBrains Mono', monospace;
+    font-size:14px;
+    letter-spacing:1px;
+    margin-bottom:10px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .legal-card.legal h3{color:var(--green);}
+  .legal-card.illegal h3{color:var(--red);}
+  .legal-card p{font-size:13.5px; color:var(--text-dim); margin-bottom:8px;}
+  .legal-card p b{color:var(--text);}
+  .legal-card ul{padding-left:18px; font-size:13px; color:var(--text-dim);}
+  .legal-card ul li{margin-bottom:6px;}
+  .legal-card ul li b{color:var(--text);}
+
+  .divider-label{
+    text-align:center; margin:56px 0 -12px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px; letter-spacing:2px; text-transform:uppercase;
+    color:var(--text-dim);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width:900px){
+    .legal-split{grid-template-columns:1fr;}
+  }
+  @media (max-width:600px){
+    header{padding:40px 16px 28px;}
+    main{padding:32px 16px 70px;}
+    .intro{padding:40px 16px 8px;}
+    .intro-box{padding:22px;}
+    .grid{grid-template-columns:1fr;}
+    .legend{gap:8px;}
+    .legend span{font-size:10.5px; padding:5px 9px;}
+    h1{font-size:clamp(22px,7vw,32px);}
+    .track-head{flex-wrap:wrap;}
+  }
+  /* ROADMAP */
+  .roadmap{max-width:1100px; margin:0 auto; padding:56px 24px 8px;}
+  .phase{
+    display:grid;
+    grid-template-columns:64px 1fr;
+    gap:20px;
+    margin-bottom:36px;
+    position:relative;
+  }
+  .phase:not(:last-child)::before{
+    content:"";
+    position:absolute;
+    left:31px; top:64px; bottom:-36px;
+    width:2px;
+    background:linear-gradient(to bottom, var(--line), transparent);
+  }
+  .phase-num{
+    width:64px; height:64px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono', monospace;
+    font-weight:800; font-size:22px;
+    flex-shrink:0;
+    border:2px solid var(--line);
+    background:var(--panel);
+  }
+  .phase-body{padding-top:6px;}
+  .phase-body h3{font-size:20px; font-weight:800; margin-bottom:4px;}
+  .phase-body .phase-sub{font-size:13px; color:var(--text-dim); margin-bottom:16px; font-family:'JetBrains Mono', monospace;}
+  .phase-items{
+    display:flex; flex-wrap:wrap; gap:10px;
+  }
+  .phase-items span{
+    background:var(--panel);
+    border:1px solid var(--line);
+    padding:8px 14px;
+    border-radius:8px;
+    font-size:13.5px;
+    color:#dfe2f0;
+  }
+  .p1 .phase-num{border-color:var(--blue); color:#60a5fa;}
+  .p2 .phase-num{border-color:var(--green); color:var(--green);}
+  .p3 .phase-num{border-color:var(--red); color:var(--red);}
+  .p4 .phase-num{border-color:var(--purple); color:#a78bfa;}
+  .p5 .phase-num{border-color:var(--orange); color:var(--orange);}
+
+  /* PROGRAMMING CARDS */
+  .lang-card{
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:18px;
+    margin-bottom:12px;
+  }
+  .lang-card h4{
+    font-family:'JetBrains Mono', monospace;
+    font-size:14px;
+    color:#fff;
+    margin-bottom:8px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .lang-card p{font-size:13.5px; color:var(--text-dim); margin-bottom:8px;}
+  .lang-card a{
+    color:var(--green);
+    font-size:12.5px;
+    font-family:'JetBrains Mono', monospace;
+    text-decoration:none;
+    border-bottom:1px dashed var(--green);
+  }
+  .lang-card a:hover{color:#4ade80;}
+
+  @media (max-width:600px){
+    .phase{grid-template-columns:44px 1fr; gap:14px;}
+    .phase-num{width:44px; height:44px; font-size:16px;}
+    .phase:not(:last-child)::before{left:21px; top:44px;}
+    .roadmap{padding:40px 16px 8px;}
+  }
+</style>
+</head>
+<body>
+<div class="scanline"></div>
+
+<header>
+  <div class="eyebrow">cyber security career map</div>
+  <h1>Yaaru enna pannuvanga?</h1>
+  <p class="sub">Cyber security field la <b>28 roles</b> irukku. Ella role um venae venae vela — evaru <b>attack</b> panuvanga, evaru <b>defend</b> panuvanga, evaru <b>build</b> panuvanga. Ellame Tanglish la, easy ah, category vaari explain pannirukken.</p>
+  <div class="legend">
+    <span><i class="dot" style="background:var(--red)"></i>Offensive (Attack)</span>
+    <span><i class="dot" style="background:var(--green)"></i>Defensive (Blue Team)</span>
+    <span><i class="dot" style="background:var(--purple)"></i>Engineering / Build</span>
+    <span><i class="dot" style="background:var(--blue)"></i>Research / Deep Tech</span>
+    <span><i class="dot" style="background:var(--orange)"></i>Governance / Leadership</span>
+  </div>
+</header>
+
+<section class="intro">
+
+  <div class="intro-box">
+    <h2>🛡️ Cyber Security na enna?</h2>
+    <p>Cyber security nu solradhu — <b>computers, networks, apps, data ah</b> hackers/attackers kitta irundhu <b>protect pannradhu</b>. Namma bank account, phone, company server, government systems — ellame digital ah irukka, adha safe ah vachukradhu dhaan idhoda main vela.</p>
+    <p>Simple ah sonna: <b>oru veedu ku security guard, CCTV, lock</b> madhiri — cyber security ah irundha, unga "digital veedu" (data, accounts, systems) safe ah irukum.</p>
+
+    <div class="task-grid">
+      <div class="task-item"><span class="num">01 · PROTECT</span>Systems ah attack varradhukku munnadiye <b>secure ah design</b> pannuvanga.</div>
+      <div class="task-item"><span class="num">02 · DETECT</span>Attack nadakkumbodhu real-time la <b>kandupidிக்கிறாங்க</b>.</div>
+      <div class="task-item"><span class="num">03 · RESPOND</span>Attack aana udane <b>damage control</b> panni system restore pannuvanga.</div>
+      <div class="task-item"><span class="num">04 · INVESTIGATE</span>Enna nadanthudhu, evaru panninanga nu <b>evidence</b> find pannuvanga.</div>
+      <div class="task-item"><span class="num">05 · TEST</span>Own system ah <b>permission oda hack pannii</b> weakness find pannuvanga.</div>
+      <div class="task-item"><span class="num">06 · GOVERN</span>Rules, policies, compliance <b>follow aaguthu</b> nu ensure pannuvanga.</div>
+    </div>
+  </div>
+
+  <div class="intro-box">
+    <h2>⚖️ Idhu Legal ah, Illegal ah?</h2>
+    <p>Idhu depends — <b>enna context la, permission irukka nu</b> paathu dhaan legal/illegal decide aagum. Same "hacking skill" ah rendu vidhama use pannalam:</p>
+
+    <div class="legal-split">
+      <div class="legal-card legal">
+        <h3>✅ LEGAL</h3>
+        <p>Ippo screenshot la irukra <b>ella 28 roles um 100% LEGAL jobs</b> — companies officially hire pannuvanga.</p>
+        <ul>
+          <li><b>Written permission</b> vaangi test pannradhu (Penetration Testing)</li>
+          <li><b>Company employee</b> ah irundhu, protect pannradhu (Blue Team, SOC)</li>
+          <li><b>Bug Bounty programs</b> la official ah participate pannradhu</li>
+          <li><b>Contract/agreement</b> kooda work pannradhu (Red Team)</li>
+        </ul>
+      </div>
+
+      <div class="legal-card illegal">
+        <h3>❌ ILLEGAL</h3>
+        <p>Same skills ah <b>permission illama</b> use pannina — adhu crime, cyber law kadhaila punishment kூட வரும்.</p>
+        <ul>
+          <li>Permission illama <b>oruthara system la nulaidhal</b></li>
+          <li>Data <b>steal/leak</b> pannradhu</li>
+          <li><b>Ransomware/malware</b> spread pannradhu</li>
+          <li>Accounts <b>hack panni misuse</b> pannradhu</li>
+        </ul>
+      </div>
+    </div>
+
+    <p style="margin-top:18px;"><b>Simple rule:</b> "Permission + Purpose" irundha legal. Illana adhe action <b>criminal offense</b> — India la IT Act 2000, and pola pala countries la strict cyber laws irukku.</p>
+  </div>
+
+</section>
+
+<div class="divider-label">28 Career Roles — Category Wise</div>
+
+<main>
+
+  <!-- RED TRACK -->
+  <section class="track t-red">
+    <div class="track-head">
+      <span class="track-tag">Red</span>
+      <h2>Offensive Security</h2>
+    </div>
+    <p class="track-desc">Idhu "attacker mindset" role — company system ah <b>legally hack pannuvanga</b>, weakness kandu pidichuduvanga, appuram report kudupanga fix panna. Real hacker maadhiri thonna, aana permission oda pannuvanga.</p>
+    <div class="grid">
+
+      <div class="card">
+        <span class="label">Network</span>
+        <div class="role">Network Penetration Tester</div>
+        <div class="what">Company network (routers, firewalls, servers) la loopholes irukka nu check pannuvanga.</div>
+        <div class="use"><b>Use:</b> Outsider ஒருத்தர் network உள்ள hack pannuற வாய்ப்பு இருக்கா nu munnadiye kandupidிக்கலாம்.</div>
+      </div>
+
+      <div class="card">
+        <span class="label">Mobile</span>
+        <div class="role">Mobile Penetration Tester</div>
+        <div class="what">Android/iOS apps la security bugs irukka nu test pannuvanga.</div>
+        <div class="use"><b>Use:</b> Banking, payment apps release aagurathukku munnadi safe ah irukka nu confirm pannuranga.</div>
+      </div>
+
+      <div class="card">
+        <span class="label">Web</span>
+        <div class="role">Web Penetration Tester</div>
+        <div class="what">Websites la SQL injection, login bypass madhiri vulnerabilities find pannuvanga.</div>
+        <div class="use"><b>Use:</b> Ecommerce/login sites hack aagama irukka nu protect pannuranga.</div>
+      </div>
+
+      <div class="card">
+        <span class="label">Application</span>
+        <div class="role">Application Penetration Tester</div>
+        <div class="what">Enna type software application ah irundhalum (desktop, cloud) attack pannu simulate pannuvanga.</div>
+        <div class="use"><b>Use:</b> App launch pannradhukku munnadi end-to-end security check pannuranga.</div>
+      </div>
+
+      <div class="card">
+        <span class="label">Freelance style</span>
+        <div class="role">Bug Bounty Hunter</div>
+        <div class="what">Companies (Google, Facebook, etc.) public ah bugs report panna prize kudupanga — adha find panni report pannuvanga.</div>
+        <div class="use"><b>Use:</b> Freelance ah irundhe bugs kandupidichi money earn pannalam.</div>
+      </div>
+
+      <div class="card">
+        <span class="label">Team</span>
+        <div class="role">Red Team Member</div>
+        <div class="what">Team ah irundhu, real hacker attack simulate pannuvanga — physical + digital + social engineering ellame include.</div>
+        <div class="use"><b>Use:</b> Company oda overall security readiness ah full-scale ah test pannuranga.</div>
+      </div>
+
+      <div class="card">
+        <span class="label">Advanced</span>
+        <div class="role">Exploit Developer</div>
+        <div class="what">Vulnerability kandupidichadhukku, athai use panni actual "exploit code" (attack tool) develop pannuvanga.</div>
+        <div class="use"><b>Use:</b> Advanced level — bug just theory ah illama, real ah exploit aaguma nu prove pannuranga.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ENGINEERING / PURPLE -->
+  <section class="track t-purple">
+    <div class="track-head">
+      <span class="track-tag">Purple</span>
+      <h2>Security Engineering</h2>
+    </div>
+    <p class="track-desc">Idhu <b>build & design</b> role — system/software/hardware ah start la irundhe safe ah design pannuvanga. Attack pannradhu illa, secure ah <b>construct</b> pannradhu dhaan vela.</p>
+    <div class="grid">
+
+      <div class="card">
+        <span class="label">DevOps + Security</span>
+        <div class="role">DevSecOps Engineer</div>
+        <div class="what">Software develop pannum process (CI/CD pipeline) la security ah automatic ah integrate pannuvanga.</div>
+        <div class="use"><b>Use:</b> Fast ah code release pannalum, security check skip aagama irukum.</div>
+      </div>
+
+      <div class="card">
+        <span class="label">Software</span>
+        <div class="role">Security Engineer (Software)</div>
+        <div class="what">Software products ah design/code level la secure ah build pannuvanga.</div>
+        <div class="use"><b>Use:</b> Start la irunthe safe ah software banauranga, later fix panradha vida easy.</div>
+      </div>
+
+      <div class="card">
+        <span class="label">Hardware</span>
+        <div class="role">Security Engineer (Hardware)</div>
+        <div class="what">Chips, IoT devices, physical equipment level la security design pannuvanga.</div>
+        <div class="use"><b>Use:</b> Smart devices (CCTV, IoT) hack aagama irukka protect pannuranga.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GREEN TRACK -->
+  <section class="track t-green">
+    <div class="track-head">
+      <span class="track-tag">Green</span>
+      <h2>Defensive / Blue Team</h2>
+    </div>
+    <p class="track-desc">Idhu <b>protect & respond</b> role — attack nadakumbodhu real-time la kandupidichi, block pannuvanga, appuram enna nadanthudhu nu investigate pannuvanga.</p>
+    <div class="grid">
+
+      <div class="card">
+        <span class="label">Mobile</span>
+        <div class="role">Mobile Application Security</div>
+        <div class="what">Mobile apps ah continuous ah monitor pannuvanga, secure coding practices follow panra madhiri assure pannuvanga.</div>
+        <div class="use"><b>Use:</b> App ecosystem la data leak aagama protect pannuranga.</div>
+      </div>
+
+      <div class="card">
+        <span class="label">Audit</span>
+        <div class="role">Source Code Auditor</div>
+        <div class="what">Actual code ah line-by-line paathu, security mistakes/backdoors irukka nu check pannuvanga.</div>
+        <div class="use"><b>Use:</b> Bugs release aagara munnadi code level la fix pannuranga.</div>
+      </div>
+
+      <div class="card">
+        <span class="label">Application</span>
+        <div class="role">Application Security Expert</div>
+        <div class="what">Whole application lifecycle la — design to deployment — security standard maintain pannuvanga.</div>
+        <div class="use"><b>Use:</b> Ella app um consistent ah secure ah irukum nu ensure pannuranga.</div>
+      </div>
+
+      <div class="card">
+        <span class="label">Proactive</span>
+        <div class="role">Threat Hunter</div>
+        <div class="what">Alert varradhukku wait pannama, network la proactive ah suspicious activity search pannuvanga.</div>
+        <div class="use"><b>Use:</b> Hidden threats (already system la irukra malware) ah munnadiye find pannuranga.</div>
+      </div>
+
+      <div class="card">
+        <span class="label">Real-time</span>
+        <div class="role">Blue Team Member</div>
+        <div class="what">Live ah attack varumbodhu, defend pannuvanga — Red Team oda opposite.</div>
+        <div class="use"><b>Use:</b> Actual attack varum time la real-time defense pannuranga.</div>
+      </div>
+
+      <div class="card">
+        <span class="label">Analysis</span>
+        <div class="role">Malware Analyst</div>
+        <div class="what">Virus/malware files ah reverse engineer pannuvanga — adhu enna pannum nu study pannuvanga.</div>
+        <div class="use"><b>Use:</b> Antivirus/EDR tools update panna intelligence kodukranga.</div>
+      </div>
+
+      <div class="card">
+        <span class="label">Response</span>
+        <div class="role">Incident Responder</div>
+        <div class="what">Breach nadanthadhum first ah react pannuvanga — damage control panni system restore pannuvanga.</div>
+        <div class="use"><b>Use:</b> Attack aana udane loss ah minimize pannuranga.</div>
+      </div>
+
+      <div class="card">
+        <span class="label">Investigation</span>
+        <div class="role">Digital Forensics Analyst</div>
+        <div class="what">Incident aana appuram, evidence collect pannuvanga — evaru, eppo, epadi hack pannanga nu trace pannuvanga.</div>
+        <div class="use"><b>Use:</b> Legal case/court proof ku evidence gather pannuranga.</div>
+      </div>
+
+      <div class="card">
+        <span class="label">SCADA</span>
+        <div class="role">SCADA Security Specialist</div>
+        <div class="what">Industrial control systems (power plants, factories) ah protect pannuvanga.</div>
+        <div class="use"><b>Use:</b> Critical infrastructure hack aana real world damage aagum — adha thadukanga.</div>
+      </div>
+
+      <div class="card">
+        <span class="label">Compliance</span>
+        <div class="role">Chief Information Security Officer</div>
+        <div class="what">Whole company oda security strategy ah lead pannuvanga — top level decision maker.</div>
+        <div class="use"><b>Use:</b> Business risk vs security balance pannuranga.</div>
+      </div>
+
+      <div class="card">
+        <span class="label">Monitoring</span>
+        <div class="role">Information Security Analyst</div>
+        <div class="what">Daily ah security logs, alerts monitor pannuvanga, policies follow aaguthu nu check pannuvanga.</div>
+        <div class="use"><b>Use:</b> Day-to-day security operations smooth ah nadakum.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BLUE (research) -->
+  <section class="track t-blue">
+    <div class="track-head">
+      <span class="track-tag">Deep Tech</span>
+      <h2>Research & Intelligence</h2>
+    </div>
+    <p class="track-desc">Idhu <b>deep technical + strategic</b> role — new threats research pannuvanga, patterns analyze pannuvanga, future attacks predict pannuvanga.</p>
+    <div class="grid">
+
+      <div class="card">
+        <span class="label">Research</span>
+        <div class="role">Security Researcher</div>
+        <div class="what">New vulnerabilities, attack techniques discover pannuvanga — academic + practical research.</div>
+        <div class="use"><b>Use:</b> Industry ku puthu threats pathi awareness kodukranga.</div>
+      </div>
+
+      <div class="card">
+        <span class="label">SOC</span>
+        <div class="role">Security Operations Center</div>
+        <div class="what">24/7 team ah irundhu, company network ah continuously monitor pannuvanga.</div>
+        <div class="use"><b>Use:</b> Threats real-time la detect panni escalate pannuranga.</div>
+      </div>
+
+      <div class="card">
+        <span class="label">Intel</span>
+        <div class="role">Cyber Intelligence Specialist</div>
+        <div class="what">Hacker groups, dark web activity track pannuvanga — future attacks predict panna try pannuvanga.</div>
+        <div class="use"><b>Use:</b> Attack varradhukku munnadiye company ah prepare pannuranga.</div>
+      </div>
+
+      <div class="card">
+        <span class="label">Analysis</span>
+        <div class="role">Cyber Threat Analyst</div>
+        <div class="what">Threat data ah analyze panni, risk level assess pannuvanga.</div>
+        <div class="use"><b>Use:</b> Which threat serious, which not — priority decide pannuranga.</div>
+      </div>
+
+      <div class="card">
+        <span class="label">R&D</span>
+        <div class="role">Cyber Operating Systems Research Engineer</div>
+        <div class="what">Secure operating systems, low-level security tech ah research & develop pannuvanga.</div>
+        <div class="use"><b>Use:</b> Next-gen secure systems build pannradhukku foundation research pannuranga.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ORANGE -->
+  <section class="track t-orange">
+    <div class="track-head">
+      <span class="track-tag">Orange</span>
+      <h2>Governance, Risk & Leadership</h2>
+    </div>
+    <p class="track-desc">Idhu <b>policy + management</b> role — technical hands-on kammi, aana laws, compliance, business risk decisions edukranga.</p>
+    <div class="grid">
+
+      <div class="card">
+        <span class="label">Privacy</span>
+        <div class="role">Data Privacy Officer</div>
+        <div class="what">Company user data ah GDPR/laws follow panni handle pannudhu nu ensure pannuvanga.</div>
+        <div class="use"><b>Use:</b> Legal fines varama, user privacy protect pannuranga.</div>
+      </div>
+
+      <div class="card">
+        <span class="label">Executive</span>
+        <div class="role">Chief Information Security Officer</div>
+        <div class="what">Company oda entire cyber security strategy, budget, team ah lead pannuvanga.</div>
+        <div class="use"><b>Use:</b> Business goals oda security goals ah align pannuranga.</div>
+      </div>
+
+      <div class="card">
+        <span class="label">Executive</span>
+        <div class="role">Chief Security Officer</div>
+        <div class="what">Cyber + physical security ellathayum overall ah manage pannuvanga.</div>
+        <div class="use"><b>Use:</b> Company wide risk management ah top level la handle pannuranga.</div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<div class="divider-label">Tools &amp; Operating System</div>
+
+<section class="intro" style="padding-top:56px;">
+
+  <div class="intro-box">
+    <h2>🐧 Linux &amp; Kali Linux — Same ah?</h2>
+    <p><b>Illa, same illa</b> — aana related dhaan. Kali Linux <b>oru type of Linux</b> — but ella Linux um Kali illa.</p>
+    <div class="legal-split">
+      <div class="legal-card legal">
+        <h3>🐧 LINUX</h3>
+        <p><b>General purpose OS family.</b> Windows/macOS madhiri oru operating system — but free &amp; open-source.</p>
+        <ul>
+          <li>Ubuntu, Fedora, Debian, Mint — ellame Linux <b>distros</b></li>
+          <li>Servers, laptops, phones (Android kooda Linux base) la use aagum</li>
+          <li>Normal daily use ku, developers ku, servers ku perfect</li>
+        </ul>
+      </div>
+      <div class="legal-card illegal">
+        <h3>🎯 KALI LINUX</h3>
+        <p><b>Special purpose Linux distro</b> — Debian base la irundhu, "Offensive Security" company build pannadhu.</p>
+        <ul>
+          <li><b>600+ security/hacking tools</b> pre-installed ah varum</li>
+          <li>Specific ah <b>penetration testing, ethical hacking</b> ku design pannadhu</li>
+          <li>Daily use ku recommend pannamattanga — testing lab ku dhaan</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:16px;"><b>Simple ah:</b> Linux = car engine family. Kali Linux = adhula irundhu build pannina "racing car" — specific job (security testing) ku tune pannirukanga.</p>
+  </div>
+
+  <div class="intro-box">
+    <h2>⌨️ Basic Kali Linux Commands</h2>
+    <p>Kali Linux um oru Linux dhaan, so <b>normal Linux commands</b> ellame work aagum. Idha therinjukonna easy ah navigate pannalam:</p>
+    <div class="task-grid">
+      <div class="task-item"><span class="num">pwd</span>Ippo eppadi folder la irukom nu <b>current path</b> kaamikum.</div>
+      <div class="task-item"><span class="num">ls -la</span>Current folder la irukra ella files/folders um <b>list</b> pannum.</div>
+      <div class="task-item"><span class="num">cd foldername</span>Vera folder ku <b>navigate</b> pannum.</div>
+      <div class="task-item"><span class="num">sudo apt update</span>System oda <b>tools/packages update</b> pannum.</div>
+      <div class="task-item"><span class="num">ip a</span>System oda <b>network/IP details</b> kaamikum.</div>
+      <div class="task-item"><span class="num">whoami</span>Ippo login aana <b>user name</b> ah kaamikum.</div>
+      <div class="task-item"><span class="num">man toolname</span>Antha tool oda <b>full manual/help</b> ah kaamikum.</div>
+      <div class="task-item"><span class="num">history</span>Munnadi type panna <b>ella commands</b> um list pannum.</div>
+    </div>
+    <p style="margin-top:14px; font-size:13px; color:var(--text-dim);">⚠️ Idhu basic navigation commands dhaan — actual security tools la irundhu attack pannradhu <b>legal permission &amp; proper training</b> venum, adha illama use panna crime.</p>
+  </div>
+
+  <div class="intro-box">
+    <h2>🧰 Common Security Tools (Category Wise)</h2>
+    <p>Kali Linux la varra 600+ tools la, industry la mosta use aagra important ones idhu:</p>
+
+    <div class="task-grid">
+      <div class="task-item"><span class="num">🔍 RECON</span><b>Nmap</b> — network scan panni, evlo devices connect aayirukku, evlo ports open irukku nu kandupidிக்கும். <br><b>Shodan</b> — internet la exposed devices search panna.</div>
+
+      <div class="task-item"><span class="num">🧪 VULN SCAN</span><b>Nessus / OpenVAS</b> — system la known vulnerabilities automatic ah scan panni report kudukum.</div>
+
+      <div class="task-item"><span class="num">💥 EXPLOITATION</span><b>Metasploit</b> — vulnerability find aana appuram, adha "exploit" panni test pannradhukku framework.</div>
+
+      <div class="task-item"><span class="num">🌐 WEB TESTING</span><b>Burp Suite</b> — websites la vulnerabilities (login bypass, injection) test panna. <br><b>SQLmap</b> — SQL injection automatic ah find &amp; test pannum. <br><b>OWASP ZAP</b> — free web app scanner.</div>
+
+      <div class="task-item"><span class="num">🔑 PASSWORD</span><b>John the Ripper / Hashcat</b> — password strength test pannradhukku (crack panni check pannuvanga). <br><b>Hydra</b> — login brute-force testing.</div>
+
+      <div class="task-item"><span class="num">📡 WIRELESS</span><b>Aircrack-ng</b> — WiFi network security test pannradhukku.</div>
+
+      <div class="task-item"><span class="num">👀 SNIFFING</span><b>Wireshark</b> — network la pogura data packets ah capture panni analyze pannum.</div>
+
+      <div class="task-item"><span class="num">🕵️ FORENSICS</span><b>Autopsy / Volatility</b> — hacked system la evidence find panna, memory analyze pannum.</div>
+
+      <div class="task-item"><span class="num">🎭 SOCIAL ENG.</span><b>SET (Social Engineer Toolkit)</b> — phishing simulation test pannradhukku (employee awareness training ku).</div>
+    </div>
+
+    <p style="margin-top:16px;">Idhu ella tools um <b>ethical hackers, pentesters</b> official ah, written permission oda dhaan use pannuvanga — namma munnadi paathoma "Legal vs Illegal" section la sonna madhiri, <b>permission illama idha yaru mela vum use panna serious crime</b>.</p>
+  </div>
+
+  <div class="intro-box">
+    <h2>🛡️ OWASP na enna?</h2>
+    <p><b>OWASP</b> (Open Worldwide Application Security Project) na — oru <b>non-profit global community</b>, website/app security pathi free ah standards, tools, guides publish pannuvanga.</p>
+    <p>Ella developers/security engineers um follow panra famous list — <b>"OWASP Top 10"</b>. Idhu web applications la <b>mosta nadakura 10 dangerous vulnerabilities</b> ah list pannirukanga:</p>
+    <div class="task-grid">
+      <div class="task-item"><span class="num">01</span><b>Broken Access Control</b> — permission illama data/pages access pannradhu.</div>
+      <div class="task-item"><span class="num">02</span><b>Cryptographic Failures</b> — sensitive data (passwords) properly encrypt aagama irundhal.</div>
+      <div class="task-item"><span class="num">03</span><b>Injection</b> — SQL/command injection, malicious input insert pannradhu.</div>
+      <div class="task-item"><span class="num">04</span><b>Insecure Design</b> — application start la irundhe security flaw ah design pannirundha.</div>
+      <div class="task-item"><span class="num">05</span><b>Security Misconfiguration</b> — server/app wrong settings la irukradhu.</div>
+      <div class="task-item"><span class="num">06</span><b>Vulnerable Components</b> — outdated libraries/plugins use pannradhu.</div>
+    </div>
+    <p style="margin-top:16px;"><b>Use enna:</b> Developers idha reference ah vachi, apps build panra time la ye idha ellam avoid panna try pannuvanga. Pentesters idha checklist ah vachi test pannuvanga.</p>
+  </div>
+
+  <div class="intro-box">
+    <h2>🔫 Burp Suite &amp; Brute Force na enna?</h2>
+    <p>Rendum vera vera concepts — confuse aagama paaru:</p>
+    <div class="legal-split">
+      <div class="legal-card legal">
+        <h3>🛠️ BURP SUITE</h3>
+        <p>Idhu oru <b>tool</b> — web application security testing ku #1 use aagra software.</p>
+        <ul>
+          <li>Browser &amp; server-oda pogura data ah <b>intercept</b> panni paakalam</li>
+          <li>Requests ah <b>modify</b> panni, application epadi react pannudhu nu test pannalam</li>
+          <li>Automatic ah vulnerabilities <b>scan</b> pannum (Pro version)</li>
+          <li>Pentesters oda "daily driver" tool</li>
+        </ul>
+      </div>
+      <div class="legal-card illegal">
+        <h3>🔨 BRUTE FORCE</h3>
+        <p>Idhu oru <b>attack technique</b> — password ah guess pannradhukku, ella combinations um try pannுவாங்க.</p>
+        <ul>
+          <li>Automatic ah <b>thousands of passwords</b> try pannum, correct varra varaikkum</li>
+          <li>Weak passwords (123456, password123) fast ah crack aagum</li>
+          <li>Hydra, Hashcat madhiri tools use pannுவாங்க</li>
+          <li>Permission illama use panna — <b>illegal, hacking crime</b></li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:16px;"><b>Connection:</b> Burp Suite <i>tool</i> — adhula irundhu login forms ah target panni <b>brute force attack</b> (technique) test pannalam, permission oda. Idhu apps ku strong password policy irukka nu confirm pannradhukku dhaan.</p>
+  </div>
+
+  <div class="intro-box">
+    <h2>💻 Programming languages — enn use, enga padikanum</h2>
+    <p>Cyber security ku coding therinjukonna <b>huge advantage</b> — tools automate pannalam, scripts eழுதலாம், exploits understand pannalam. Idhu mukkiya languages:</p>
+
+    <div class="lang-card">
+      <h4>🐍 Python</h4>
+      <p><b>Enna pannum:</b> Automation, custom hacking tools build pannradhu, web scraping, exploit scripts eluthradhu. Security field la <b>#1 most-used language</b>.</p>
+      <p><b>Yean useful:</b> Easy ah padikalam, syntax simple, pandhu security library (Scapy, Requests) already irukku — fast ah tool build pannalam.</p>
+      <a href="https://www.youtube.com/watch?v=rfscVS0vtbw" target="_blank">▶ Learn Python – freeCodeCamp (YouTube)</a>
+    </div>
+
+    <div class="lang-card">
+      <h4>⌨️ Bash (Shell Scripting)</h4>
+      <p><b>Enna pannum:</b> Linux/Kali terminal la repetitive tasks automate pannradhu — multiple commands ah oru script ah combine pannradhu.</p>
+      <p><b>Yean useful:</b> Kali Linux full ah terminal based — Bash therinjaa, tools ah chain panni fast ah work pannalam.</p>
+      <a href="https://www.youtube.com/watch?v=TSQ1ed9jFtY" target="_blank">▶ Bash Scripting – freeCodeCamp (YouTube)</a>
+    </div>
+
+    <div class="lang-card">
+      <h4>🌐 JavaScript</h4>
+      <p><b>Enna pannum:</b> Web application security ku (XSS attacks, DOM manipulation understand pannradhu) mukkiyam. Websites epadi work aagudhu nu therinja, adha epadi break pannalam nu puriyum.</p>
+      <p><b>Yean useful:</b> Web Pentesting ku, ella website um JavaScript la run aagudhu — adha therinjaal client-side vulnerabilities find pannalam.</p>
+      <a href="https://www.youtube.com/watch?v=jS4aFq5-91M" target="_blank">▶ JavaScript Full Course – freeCodeCamp (YouTube)</a>
+    </div>
+  </div>
+
+  <div class="intro-box">
+    <h2>🪟 Windows Security</h2>
+    <p>Linux mattum illa — <b>Windows</b> um cyber security la mukkiyam, yeanna most companies office systems, servers Windows la dhaan run aagum.</p>
+    <div class="task-grid">
+      <div class="task-item"><span class="num">🏢 CORPORATE</span>Most companies <b>Windows Server + Windows 10/11 laptops</b> use pannுவாங்க — attackers idha dhaan mostly target pannுவாங்க.</div>
+      <div class="task-item"><span class="num">🔑 AUTHENTICATION</span>Windows la login/password system vera type — <b>NTLM, Kerberos</b> madhiri protocols use aagum.</div>
+      <div class="task-item"><span class="num">🖥️ POWERSHELL</span>Windows oda scripting language — Linux la Bash madhiri, Windows la <b>PowerShell</b> automation &amp; attack ku use aagும்.</div>
+      <div class="task-item"><span class="num">🛡️ DEFENDER</span>Windows built-in antivirus — <b>Windows Defender</b> epadi bypass aagalam nu therinjaal, better ah protect panna therியும்.</div>
+    </div>
+  </div>
+
+  <div class="intro-box">
+    <h2>🏰 Windows AD (Active Directory) Basics</h2>
+    <p><b>Active Directory (AD)</b> na — companies la ella employee accounts, computers, permissions ah oray place la manage panna Microsoft oda system.</p>
+    <p>Example ah: 500 employees irukra company la, evaru evaru file access pannalam, evaru login pannalam ellame AD la dhaan control aagum. <b>Attackers oda #1 target</b> — AD hack aana, whole company network kூட compromise aagum.</p>
+    <div class="task-grid">
+      <div class="task-item"><span class="num">👤 DOMAIN</span>Company oda ella users/computers um oru <b>domain</b> kulla irukum — central control.</div>
+      <div class="task-item"><span class="num">🎫 KERBEROASTING</span>AD la irukra weak service account passwords ah target panni crack pannradhu (common attack).</div>
+      <div class="task-item"><span class="num">📡 LLMNR POISONING</span>Network la fake responses anупpi, credentials capture pannradhu.</div>
+      <div class="task-item"><span class="num">🔗 LATERAL MOVEMENT</span>Oru system hack aana appuram, adhu vachi network internal ah "spread" aagradhu.</div>
+    </div>
+  </div>
+
+  <div class="intro-box">
+    <h2>⬆️ Linux Privilege Escalation</h2>
+    <p>Simple ah sonna: <b>normal user</b> ah irundhu, system la <b>"root" (admin) access</b> vaangradhukku try pannradhu.</p>
+    <p>Attacker oru system la initial ah low-level access vaangittu, appuram idha use panni <b>full control</b> edukka try pannuvanga. Idhu evlo dangerous na, root access kிடைchaa, whole system ah attacker control pannalam.</p>
+    <div class="task-grid">
+      <div class="task-item"><span class="num">🔍 ENUMERATION</span>System la misconfigurations, weak permissions irukka nu <b>scan</b> pannradhu (adhukku LinPEAS madhiri tools use pannuvanga).</div>
+      <div class="task-item"><span class="num">📜 SUID BINARIES</span>Special permission irukra files ah exploit panni, admin access edukradhu.</div>
+      <div class="task-item"><span class="num">⏰ CRON JOBS</span>Automatic ah run aagra scheduled tasks la vulnerabilities find pannradhu.</div>
+      <div class="task-item"><span class="num">🔑 SUDO MISCONFIG</span>Wrong ah configure panna sudo permissions ah misuse pannradhu.</div>
+    </div>
+    <p style="margin-top:14px; font-size:13px; color:var(--text-dim);">⚠️ Pentesters oda "final goal" idhu dhaan — normal access la irundhu, full admin/root control edukradhu, permission oda test pannும்பொழுது.</p>
+  </div>
+
+  <div class="intro-box">
+    <h2>☁️ Cloud Security</h2>
+    <p>Ippo ella companies um data ah <b>AWS, Azure, Google Cloud</b> madhiri cloud platforms la vachirukanga — physical server illama.</p>
+    <p>Cloud Security engineer <b>idha protect pannuvanga</b> — misconfigured cloud storage, weak access controls, insecure APIs ellam fix pannuvanga.</p>
+    <div class="task-grid">
+      <div class="task-item"><span class="num">🪣 S3 BUCKETS</span>AWS storage wrong ah public ah vachirundha, data leak aagும். Idha check &amp; secure pannuvanga.</div>
+      <div class="task-item"><span class="num">🔐 IAM</span>"Identity Access Management" — evaru enna access pannalam nu control pannuvanga.</div>
+      <div class="task-item"><span class="num">🐳 CONTAINERS</span>Docker/Kubernetes based apps ah secure ah deploy pannradhu.</div>
+      <div class="task-item"><span class="num">📊 COMPLIANCE</span>Cloud data laws (GDPR, SOC2) follow aaguthu nu ensure pannuvanga.</div>
+    </div>
+    <p style="margin-top:14px;"><b>Use enna:</b> Ippo mosta companies cloud-first ah irukanga, so idhu <b>high-demand skill</b> — traditional network security vida differently think pannanum.</p>
+  </div>
+
+  <div class="intro-box">
+    <h2>🚩 CTFs (Capture The Flag)</h2>
+    <p>CTF na — <b>hacking practice game</b>. Legal ah, safe ah, oru sandbox environment la (fake vulnerable systems) hack pannradhukku practice pannalam.</p>
+    <p>Hidden "flags" (secret codes) irukum — adha find pannradhukku, real hacking techniques use pannanum. Points/leaderboard kூட irukும், competitive ah irukும்.</p>
+    <div class="legal-split">
+      <div class="legal-card legal">
+        <h3>🎯 TryHackMe</h3>
+        <p>Beginners ku perfect — guided "rooms" la step-by-step learn panni practice pannalam.</p>
+        <ul>
+          <li>Structured learning paths</li>
+          <li>Free + paid tiers available</li>
+          <li>Beginner friendly UI</li>
+        </ul>
+      </div>
+      <div class="legal-card illegal" style="background:rgba(37,99,235,0.08); border-color:rgba(37,99,235,0.35);">
+        <h3 style="color:#60a5fa;">💀 Hack The Box</h3>
+        <p>Advanced level — realistic "retired machines" ah manually exploit pannanum, less hand-holding.</p>
+        <ul>
+          <li>Real-world scenario machines</li>
+          <li>Ranking system (Script Kiddie → Elite)</li>
+          <li>Resume/portfolio ku strong proof</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:16px;"><b>Use enna:</b> Job interview ku "hands-on proof" kaамика CTF profile use pannalam — theory mattum illama, practical skill demonstrate pannalam.</p>
+  </div>
+
+  <div class="intro-box">
+    <h2>🎓 Certifications — OSCP / PNPT / eJPT</h2>
+    <p>Idhu <b>industry-recognized certificates</b> — cyber security job vaangradhukku idhu proof ah irukும். Difficulty level வெவ்வேறு:</p>
+    <div class="task-grid">
+      <div class="task-item"><span class="num">🟢 eJPT — BEGINNER</span>"eLearnSecurity Junior Penetration Tester" — entry-level cert, basics test pannும். Fresh ah start pannradhukku perfect.</div>
+      <div class="task-item"><span class="num">🟡 PNPT — INTERMEDIATE</span>"Practical Network Penetration Tester" (TCM Security) — real-world network pentest simulate panni, report eழுthanum.</div>
+      <div class="task-item"><span class="num">🔴 OSCP — ADVANCED</span>"Offensive Security Certified Professional" — industry la <b>gold standard</b>. 24-hour hands-on exam, multiple machines hack pannanum. Very tough, but highly respected.</div>
+    </div>
+    <p style="margin-top:14px;"><b>Use enna:</b> Ivanga resume la irundha, recruiters immediate ah trust pannuvanga — "idhu practical skills irukra person" nu prove aagும். OSCP na especially, high-paying pentest jobs ku almost mandatory.</p>
+  </div>
+
+  <div class="intro-box">
+    <h2>🔎 Nmap na enna, deep ah?</h2>
+    <p><b>Nmap (Network Mapper)</b> — free, open-source tool, network la <b>enna devices connect aayirukku, evlo ports open irukku, enna services run aagudhu</b> nu kandupidிக்கும்.</p>
+    <p>Simple analogy: unga apartment la evlo doors (ports) irukku, adhula evlo doors <b>lock aagalama illa open ah irukka</b> nu check pannுவathu madhiri.</p>
+    <div class="task-grid">
+      <div class="task-item"><span class="num">🖥️ HOST DISCOVERY</span>Network la evlo devices "live" ah irukku nu kandupidிக்கும் — <b>who's online</b>.</div>
+      <div class="task-item"><span class="num">🚪 PORT SCANNING</span>Antha device la evlo ports <b>open/closed/filtered</b> nu check pannும் (e.g., port 80 = website, port 22 = SSH).</div>
+      <div class="task-item"><span class="num">🏷️ SERVICE DETECTION</span>Antha open port la <b>enna software version</b> run aagudhu nu identify pannும் — (e.g. Apache 2.4.41).</div>
+      <div class="task-item"><span class="num">🖲️ OS DETECTION</span>Target system <b>Windows ah, Linux ah</b> nu guess pannும், response patterns vachi.</div>
+    </div>
+    <p style="margin-top:16px;"><b>First step ah use aagும்:</b> Ethical hackers oda "recon" phase la Nmap dhaan first tool — target pathi info gather panradhukku. Adhukku appuram dhaan exploitation start aagும்.</p>
+    <p style="font-size:13px; color:var(--text-dim); margin-top:10px;">⚠️ Own network illama, vera evarோdo network ah scan panna — permission illama panna illegal (unauthorized access).</p>
+  </div>
+
+  <div class="intro-box">
+    <h2>🎯 Penetration Testing (Pentest) na enna?</h2>
+    <p><b>Penetration Testing</b> na — company <b>legal ah, written contract kूডan</b> hire panni, "en systems ah hack panni paaru, weakness irundha sollu" nu kேட்cha, adhukku response ah pannradhu.</p>
+    <p>"Pen" = penetrate (nulai), "Test" = check pannradhu. Real attacker madhiri simulate pannுவaanga, aana intention <b>protect pannradhu dhaan, harm pannradhu illa</b>.</p>
+    <div class="task-grid">
+      <div class="task-item"><span class="num">1️⃣ SCOPING</span>Client kூடa pேசி, <b>enna test pannalam, enna test panna kூடadhu</b> nu agreement eழுthுவaanga.</div>
+      <div class="task-item"><span class="num">2️⃣ RECON</span>Target pathi info gather pannுவaanga (Nmap, OSINT tools).</div>
+      <div class="task-item"><span class="num">3️⃣ EXPLOITATION</span>Vulnerabilities ah actual ah exploit panni, evlo damage panna mудியும் nu prove pannுவaanga.</div>
+      <div class="task-item"><span class="num">4️⃣ REPORTING</span>Ella findings ah document panni, <b>fix pannradhukku recommendations</b> kூடa report kудுpaanga.</div>
+    </div>
+    <p style="margin-top:16px;"><b>Types:</b> Black Box (zero info kодுpaanga), White Box (full access/code kодுpaanga), Grey Box (partial info) — evlo realistic ah test pannanum nu depend aagும்.</p>
+  </div>
+
+  <div class="intro-box">
+    <h2>🔒 Naan cyber security person illa — en website ah epadi secure pannradhu?</h2>
+    <p>Neenga developer/security expert illainalum, idha follow pannina unga website <b>70-80% common attacks</b> ah thadukkalam:</p>
+    <div class="task-grid">
+      <div class="task-item"><span class="num">01 · HTTPS</span>Website ku <b>SSL certificate</b> (padlock icon) irukka nu confirm pannunga — most hosting providers free ah kудுthidுvaanga (Let's Encrypt).</div>
+      <div class="task-item"><span class="num">02 · UPDATES</span>WordPress/CMS, plugins, themes ella time um <b>latest version</b> ah vachukanga — old versions la known bugs irukum.</div>
+      <div class="task-item"><span class="num">03 · STRONG PASSWORDS</span>Admin login ku weak passwords (admin123) use pannaadhinga — <b>12+ characters, mix of letters/numbers/symbols</b>.</div>
+      <div class="task-item"><span class="num">04 · 2FA</span>Two-Factor Authentication enable pannunga — password kூட, phone OTP kூடa venum login ku.</div>
+      <div class="task-item"><span class="num">05 · BACKUPS</span>Regular ah (weekly) website backup edukkunga — hack aana kூடa, restore panniralaam.</div>
+      <div class="task-item"><span class="num">06 · LIMIT LOGIN ATTEMPTS</span>Wrong password 5 thadava try pannina, account <b>temporary lock</b> aagum madhiri plugin/setting vachukanga (brute force thadukka).</div>
+      <div class="task-item"><span class="num">07 · WAF (Firewall)</span>Cloudflare madhiri free <b>Web Application Firewall</b> use pannunga — malicious traffic automatic ah block aagும்.</div>
+      <div class="task-item"><span class="num">08 · TRUSTED PLUGINS</span>Unknown/unverified sources la irundhu plugins/themes download pannaadhinga — malware irukka vaаyppu irukku.</div>
+      <div class="task-item"><span class="num">09 · HTTPS FORMS</span>Contact/login forms la data validate pannunga — user enna type pannalum, unexpected input handle panna vேum் (developer irundhaal).</div>
+      <div class="task-item"><span class="num">10 · MONITOR</span>Unusual activity (unknown admin login, sudden traffic spike) alerts vachukanga — Google Search Console free ah malware detect pannும்.</div>
+    </div>
+    <p style="margin-top:16px;"><b>Simple rule:</b> Update pannunga, strong password vachukanga, backup edukkunga, HTTPS use pannunga — idhu 4 dhaan 90% websites ku podhum.</p>
+  </div>
+
+</section>
+
+<div class="divider-label">Complete Career Roadmap</div>
+
+<section class="roadmap">
+  <div class="intro-box" style="margin-bottom:36px;">
+    <h2>🗺️ Cyber Security ku Full Roadmap</h2>
+    <p>Zero ah irundhu job varaikkum, idhu step-by-step order — <b>skip pannama</b> follow pannunga, ovvoru phase um adutha phase ku foundation:</p>
+  </div>
+
+  <div class="phase p1">
+    <div class="phase-num">01</div>
+    <div class="phase-body">
+      <h3>Foundations</h3>
+      <div class="phase-sub">Base build pannradhu — idhu illama meladhu ellam kashtam</div>
+      <div class="phase-items">
+        <span>💻 Computer Basics</span>
+        <span>🐧 Linux &amp; Windows</span>
+        <span>🌐 Networking (TCP/IP, DNS, HTTP)</span>
+        <span>🐍 Programming (Python, Bash, JavaScript)</span>
+        <span>🔧 Git &amp; GitHub</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase p2">
+    <div class="phase-num">02</div>
+    <div class="phase-body">
+      <h3>Level Up</h3>
+      <div class="phase-sub">Security concepts + tools deep ah padikanum</div>
+      <div class="phase-items">
+        <span>🌐 Web Security (OWASP Top 10)</span>
+        <span>🐧 Linux Privilege Escalation</span>
+        <span>🪟 Windows AD Basics</span>
+        <span>🔐 Cryptography</span>
+        <span>🛠️ Wireshark, Burp Suite, Nmap</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase p3">
+    <div class="phase-num">03</div>
+    <div class="phase-body">
+      <h3>Specialize</h3>
+      <div class="phase-sub">Enna field la focus pannanum nu decide pannunga</div>
+      <div class="phase-items">
+        <span>🌐 Web Pentesting</span>
+        <span>📡 Network Pentesting</span>
+        <span>📱 Mobile Security</span>
+        <span>☁️ Cloud Security</span>
+        <span>🦠 Malware Analysis</span>
+        <span>🕵️ Digital Forensics</span>
+        <span>🔴 Red Teaming</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase p4">
+    <div class="phase-num">04</div>
+    <div class="phase-body">
+      <h3>Build &amp; Share</h3>
+      <div class="phase-sub">Practical skills prove pannanum — theory mattum podhadhu</div>
+      <div class="phase-items">
+        <span>🚩 CTFs (TryHackMe, Hack The Box)</span>
+        <span>📝 Write Reports</span>
+        <span>✍️ Publish Write-ups</span>
+        <span>💻 GitHub Projects</span>
+        <span>🐛 Bug Bounty</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase p5">
+    <div class="phase-num">05</div>
+    <div class="phase-body">
+      <h3>Level Up Your Career</h3>
+      <div class="phase-sub">Job market ku ready aagardhukku</div>
+      <div class="phase-items">
+        <span>📁 Build a Portfolio</span>
+        <span>🎓 OSCP / PNPT / eJPT</span>
+        <span>💼 Freelancing</span>
+        <span>🤝 Networking &amp; Community</span>
+        <span>📚 Continuous Learning</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="intro-box" style="margin-top:20px;">
+    <h2>📺 More Learning Resources (YouTube)</h2>
+    <div class="task-grid">
+      <div class="task-item"><span class="num">GIT &amp; GITHUB</span><a href="https://www.youtube.com/watch?v=mAFoROnOfHs" target="_blank" style="color:var(--green);">▶ freeCodeCamp — Git &amp; GitHub Crash Course</a></div>
+      <div class="task-item"><span class="num">LINUX</span><a href="https://www.youtube.com/watch?v=sWbUDq4S6Y8" target="_blank" style="color:var(--green);">▶ freeCodeCamp — Introduction to Linux</a></div>
+      <div class="task-item"><span class="num">NETWORKING</span><a href="https://www.youtube.com/watch?v=zN8YNNHcaZc" target="_blank" style="color:var(--green);">▶ freeCodeCamp — How the Internet Works</a></div>
+      <div class="task-item"><span class="num">KALI + NMAP + WIRESHARK</span><a href="https://youtu.be/ug8W0sFiVJo" target="_blank" style="color:var(--green);">▶ freeCodeCamp — Kali Linux Full Course</a></div>
+      <div class="task-item"><span class="num">OWASP TOP 10</span><a href="https://www.youtube.com/watch?v=Zc5N3C51G6A" target="_blank" style="color:var(--green);">▶ OWASP Top 10 Explained</a></div>
+      <div class="task-item"><span class="num">FULL ETHICAL HACKING</span><a href="https://www.youtube.com/playlist?list=PLSPQu-Cm6qEl_bCvGB0cYK6Ejrb0bT-R6" target="_blank" style="color:var(--green);">▶ freeCodeCamp — Ethical Hacking Playlist</a></div>
+    </div>
+  </div>
+
+  <div class="intro-box">
+    <h2>🎬 Roadmap-wise Recommended Channels</h2>
+    <p>Ovvoru phase kum pest fit channel — idha follow panni order ah padichunga:</p>
+
+    <div class="phase p1">
+      <div class="phase-num" style="font-size:15px;">01</div>
+      <div class="phase-body">
+        <h3 style="font-size:17px;">Foundations</h3>
+        <div class="phase-sub">Linux, Networking, Programming basics</div>
+        <p style="font-size:13.5px; color:#c7cce0;">🔵 <b>NetworkChuck</b> — beginner-friendly, fun style, IT/networking/Linux basics.</p>
+        <a href="https://www.youtube.com/@NetworkChuck" target="_blank" style="color:var(--green); font-family:'JetBrains Mono',monospace; font-size:12.5px;">▶ youtube.com/@NetworkChuck</a>
+      </div>
+    </div>
+
+    <div class="phase p2">
+      <div class="phase-num" style="font-size:15px;">02</div>
+      <div class="phase-body">
+        <h3 style="font-size:17px;">Level Up</h3>
+        <div class="phase-sub">OWASP, tools, cryptography</div>
+        <p style="font-size:13.5px; color:#c7cce0;">🟢 <b>HackerSploit</b> — pentest labs, OWASP Top 10, Kali toolkits, structured lessons.</p>
+        <a href="https://www.youtube.com/@HackerSploit" target="_blank" style="color:var(--green); font-family:'JetBrains Mono',monospace; font-size:12.5px;">▶ youtube.com/@HackerSploit</a>
+      </div>
+    </div>
+
+    <div class="phase p3">
+      <div class="phase-num" style="font-size:15px;">03</div>
+      <div class="phase-body">
+        <h3 style="font-size:17px;">Specialize</h3>
+        <div class="phase-sub">Web, network pentesting, red teaming</div>
+        <p style="font-size:13.5px; color:#c7cce0;">🔴 <b>The Cyber Mentor (TCM Security)</b> — Heath Adams, "Practical Ethical Hacking" — real hands-on courses, OSCP holder.</p>
+        <a href="https://www.youtube.com/@TCMSecurityAcademy" target="_blank" style="color:var(--green); font-family:'JetBrains Mono',monospace; font-size:12.5px;">▶ youtube.com/@TCMSecurityAcademy</a>
+      </div>
+    </div>
+
+    <div class="phase p4">
+      <div class="phase-num" style="font-size:15px;">04</div>
+      <div class="phase-body">
+        <h3 style="font-size:17px;">Build &amp; Share</h3>
+        <div class="phase-sub">CTFs, write-ups, walkthroughs</div>
+        <p style="font-size:13.5px; color:#c7cce0;">🟣 <b>John Hammond</b> — CTF walkthroughs, malware analysis, reverse engineering.</p>
+        <a href="https://www.youtube.com/@_JohnHammond" target="_blank" style="color:var(--green); font-family:'JetBrains Mono',monospace; font-size:12.5px;">▶ youtube.com/@_JohnHammond</a>
+      </div>
+    </div>
+
+    <div class="phase p5" style="margin-bottom:0;">
+      <div class="phase-num" style="font-size:15px;">05</div>
+      <div class="phase-body">
+        <h3 style="font-size:17px;">Career</h3>
+        <div class="phase-sub">Certifications, job prep, Tamil support</div>
+        <p style="font-size:13.5px; color:#c7cce0;">🩷 <b>Cyber Voyage</b> — Tamil la full ah cybersecurity, ethical hacking, career guidance explain pannுவaanga.</p>
+        <a href="https://www.youtube.com/@cyber_voyage" target="_blank" style="color:var(--green); font-family:'JetBrains Mono',monospace; font-size:12.5px;">▶ youtube.com/@cyber_voyage</a>
+      </div>
+    </div>
+
+    <p style="margin-top:24px; font-size:13px; color:var(--text-dim); border-top:1px dashed var(--line); padding-top:16px;">💡 <b>Tip:</b> NetworkChuck &amp; freeCodeCamp la start pannunga (foundations), appuram HackerSploit/TCM ku move pannunga (hands-on practice), Tamil comfort venumna Cyber Voyage parallel ah watch pannalam.</p>
+  </div>
+
+</section>
+
+<footer>
+  Note: intha chart la CISO rendu category la (Green &amp; Orange) kaanpichirundhachu — leadership role ah irundhalum, technical background venum nu kaatradhukku dhaan.
+</footer>
+
+</body>
+</html>
